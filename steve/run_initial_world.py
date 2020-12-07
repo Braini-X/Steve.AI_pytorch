@@ -302,7 +302,10 @@ for repeat in range(EPISODES):
 
         # MAIN NN LOGIC
 
-    REWARDS_DICT[repeat] = sum(rewards) / len(rewards)
+    if len(rewards) > 0:
+        REWARDS_DICT[repeat] = sum(rewards) / len(rewards)
+    else:
+        REWARDS_DICT[repeat] = 0
     GRAPH.animate(list(REWARDS_DICT.keys()), list(REWARDS_DICT.values()))
     succ_rate = (CLEARS / (repeat + 1)) * 100
     print('SUCCESS RATE: {} / {} = {}%'.format(CLEARS, repeat + 1, succ_rate))
