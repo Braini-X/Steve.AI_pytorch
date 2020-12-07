@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<Mission xmlns="http://ProjectMalmo.microsoft.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+    <About>
+        <Summary>Steve.AI</Summary>
+    </About>
+
+    <ModSettings>
+        <MsPerTick>25</MsPerTick>
+    </ModSettings>
+
+    <ServerSection>
+        <ServerInitialConditions>
+            <Time>
+                <StartTime>20000</StartTime>
+                <AllowPassageOfTime>false</AllowPassageOfTime>
+            </Time>
+            <Weather>clear</Weather>
+            <AllowSpawning>true</AllowSpawning>
+            <AllowedMobs>Zombie</AllowedMobs>
+        </ServerInitialConditions>
+        <ServerHandlers>
+            <FlatWorldGenerator generatorString="3;7,20*89;1;"/>
+            <!--<DrawingDecorator>-->
+            <!--<DrawEntity x="-25.0" y="21.0" z="10" type="Zombie" pitch="0.0" xVel="0.0" yVel="0.0" zVel="0.0"/>-->
+            <!--</DrawingDecorator>-->
+            <DrawingDecorator>
+                <!--<DrawEntity x="-25.0" y="21.0" z="10" type="Zombie" pitch="0.0" xVel="0.0" yVel="0.0" zVel="0.0"/>-->
+                <DrawCuboid x1="-20" y1="20" z1="-20" x2="20" y2="20" z2="20" type="lava" />
+                <DrawCuboid x1="-10" y1="20" z1="-10" x2="10" y2="20" z2="10" type="bedrock" />
+            </DrawingDecorator>
+            <ServerQuitFromTimeUp timeLimitMs="40000"/>
+            <ServerQuitWhenAnyAgentFinishes/>
+        </ServerHandlers>
+    </ServerSection>
+
+    <AgentSection mode="Survival">
+        <Name>Steve.AI</Name>
+        <AgentStart>
+            <Placement x="2" y="23" z="0" yaw="90"/>
+            <Inventory>
+                <InventoryItem slot="0" type="diamond_sword"/>
+                <InventoryItem slot="36" type="iron_boots"/>
+                <InventoryItem slot="37" type="iron_leggings"/>
+                <InventoryItem slot="38" type="iron_chestplate"/>
+                <InventoryItem slot="39" type="iron_helmet"/>
+            </Inventory>
+        </AgentStart>
+        <AgentHandlers>
+            <ChatCommands/>
+            <MissionQuitCommands quitDescription="done"/>
+            <ObservationFromFullStats/>
+            <InventoryCommands/>
+            <ContinuousMovementCommands turnSpeedDegs="180"/>
+            <ObservationFromNearbyEntities>
+                <Range name="entities" xrange="100" yrange="20" zrange="100"/>
+            </ObservationFromNearbyEntities>
+        </AgentHandlers>
+    </AgentSection>
+</Mission>
